@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { getCurrentUser } from "@/lib/supabase/actions";
 import { db, assets, tasks, assetTypes } from "@/db";
-import { eq, and, desc } from "drizzle-orm";
+import { eq, and, desc, isNull } from "drizzle-orm";
 import { AssetsClient } from "./assets-client";
 import { assetCategories } from "@/db/seed-data";
 
@@ -17,7 +17,7 @@ export default async function AssetsPage() {
     where: and(
       eq(assets.ownerId, user.id),
       eq(assets.isArchived, false),
-      eq(assets.parentAssetId, null as unknown as string) // Only top-level assets, will be handled in query
+      isNull(assets.parentAssetId)
     ),
     with: {
       assetType: true,
@@ -31,8 +31,8 @@ export default async function AssetsPage() {
     orderBy: [desc(assets.updatedAt)],
   });
 
-  // Filter out child assets at the top level (since parentAssetId comparison doesn't work directly)
-  const topLevelAssets = userAssets.filter(a => !a.parentAssetId);
+  // Top-level assets only (parentAssetId is null)
+  const topLevelAssets = userAssets;
 
   // Get overdue counts for each asset
   const assetsWithCounts = await Promise.all(
