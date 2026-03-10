@@ -1,0 +1,66 @@
+{
+  "expo": {
+    "name": "MainTrack",
+    "slug": "maintrack",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "scheme": "maintrack",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#7f9bb0"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.maintrack.app",
+      "infoPlist": {
+        "NSCameraUsageDescription": "MainTrack uses the camera to capture photos of completed maintenance tasks.",
+        "NSPhotoLibraryUsageDescription": "MainTrack accesses your photos to attach images to assets and tasks."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#7f9bb0"
+      },
+      "package": "com.maintrack.app",
+      "permissions": ["CAMERA", "READ_EXTERNAL_STORAGE", "WRITE_EXTERNAL_STORAGE"]
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/notification-icon.png",
+          "color": "#7f9bb0"
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "MainTrack needs access to your photos to attach images to assets and tasks."
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "your-project-id"
+      }
+    }
+  }
+}
