@@ -1,6 +1,3 @@
 {
-  "buildCommand": "cd maintrack/web && npm run build",
-  "outputDirectory": "maintrack/web/.next",
-  "installCommand": "cd maintrack/web && npm install",
-  "framework": "nextjs"
+  "rootDirectory": "maintrack/web"
 }

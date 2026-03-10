@@ -188,7 +188,7 @@ export function AssetsClient({ assets, assetTypes, categories }: AssetsClientPro
                           {asset.assetType.name}
                         </p>
                       </div>
-                      {asset.overdueCount > 0 && (
+                      {(asset.overdueCount ?? 0) > 0 && (
                         <Badge variant="overdue">{asset.overdueCount}</Badge>
                       )}
                     </div>

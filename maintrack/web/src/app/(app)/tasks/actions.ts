@@ -6,7 +6,7 @@ import { db, tasks, taskHistory, assets, meterReadings } from "@/db";
 import { eq, and } from "drizzle-orm";
 import { getCurrentUser } from "@/lib/supabase/actions";
 import { addDays, addWeeks, addMonths, addYears } from "date-fns";
-import type { TaskType, TaskCategory, IntervalUnit } from "@/types";
+import type { TaskType, TaskCategory, IntervalUnit, CycleUnit } from "@/types";
 
 export async function createTask(formData: FormData) {
   const user = await getCurrentUser();
@@ -22,7 +22,7 @@ export async function createTask(formData: FormData) {
   const intervalValue = formData.get("intervalValue") as string;
   const intervalUnit = formData.get("intervalUnit") as IntervalUnit;
   const cycleInterval = formData.get("cycleInterval") as string;
-  const cycleUnit = formData.get("cycleUnit") as string;
+  const cycleUnit = formData.get("cycleUnit") as CycleUnit | null;
   const dueDateStr = formData.get("dueDate") as string;
 
   let dueDate: Date | null = null;
