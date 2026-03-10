@@ -45,7 +45,7 @@ interface Asset {
   id: string;
   name: string;
   assetType: AssetType;
-  overdueCount: number;
+  overdueCount?: number;
   childAssets?: Asset[];
 }
 
